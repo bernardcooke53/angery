@@ -18,10 +18,13 @@ a n g e r y
 
 ## Options
 
+- `-U, --uppercase`: output your text in all uppercase
+- `-s, --spacing`: control the number of spaces between characters (default: 1)
+
 For a full list of options run
 
 ```bash
-textwave --help
+angery --help
 ```
 
 ## Contributing
