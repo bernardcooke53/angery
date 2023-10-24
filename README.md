@@ -1,6 +1,6 @@
 # angery
 
-[![angery.webp](./img/angery2.webp)]
+![angery.jpg](./img/angery.jpg)
 
 ## Installation
 
