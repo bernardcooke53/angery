@@ -1,10 +1,12 @@
 /*
 Copyright © 2023 NAME HERE <EMAIL ADDRESS>
-*/
-package cmd
+*/package cmd
 
 import (
+	"bufio"
+	"fmt"
 	"os"
+	"strings"
 
 	"github.com/spf13/cobra"
 )
@@ -12,16 +14,20 @@ import (
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
 	Use:   "angery",
-	Short: "A brief description of your application",
-	Long: `A longer description that spans multiple lines and likely contains
-examples and usage of using your application. For example:
+	Short: "Text just not quite getting the message across? Make it A N G E R Y",
+	Long: `
+Emphasise your point by transorming your text into something that makes it clear what you are trying to say.
 
-Cobra is a CLI library for Go that empowers applications.
-This application is a tool to generate the needed files
-to quickly create a Cobra application.`,
+Make it A N G E R Y
+
+https://www.youtube.com/watch?v=5jO2PLqEdUY
+
+Vegetals are not included`,
 	// Uncomment the following line if your bare application
 	// has an action associated with it:
 	// Run: func(cmd *cobra.Command, args []string) { },
+
+	Run: angeryMain,
 }
 
 // Execute adds all child commands to the root command and sets flags appropriately.
@@ -43,4 +49,34 @@ func init() {
 	// Cobra also supports local flags, which will only run
 	// when this action is called directly.
 	rootCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
+}
+
+func angeryMain(cmd *cobra.Command, args []string) {
+	text, err := readStdin()
+	cobra.CheckErr(err)
+
+	transformed := transformText(text)
+
+	fmt.Println(transformed)
+}
+
+func readStdin() (string, error) {
+	reader := bufio.NewReader(os.Stdin)
+	fmt.Print("Can i haz some txt?: ")
+	text, err := reader.ReadString('\n')
+	if err != nil {
+		return "", err
+	}
+	return text, nil
+}
+
+func transformText(text string) string {
+	var b strings.Builder
+	for i := 0; i < len(text); i++ {
+		b.WriteByte(text[i])
+		b.WriteString(" ")
+
+	}
+
+	return b.String()
 }
