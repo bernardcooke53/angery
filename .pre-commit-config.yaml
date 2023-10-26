@@ -1,7 +1,6 @@
 ---
 default_language_version:
   python: python3
-  golang: "1.21.3"
 
 repos:
   # Meta hoks
