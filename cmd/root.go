@@ -71,12 +71,6 @@ func readStdin() (string, error) {
 }
 
 func transformText(text string) string {
-	var b strings.Builder
-	for i := 0; i < len(text); i++ {
-		b.WriteByte(text[i])
-		b.WriteString(" ")
-
-	}
-
-	return b.String()
+	chars := strings.Split(text, "")
+	return strings.Join(chars, " ")
 }
